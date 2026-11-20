@@ -1,0 +1,22 @@
+# Ambiente local: PostgreSQL, LocalStack (SQS) e Mailpit (caixa de e-mail em http://localhost:8025).
+# Sobe sozinho com: ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: hexfolio
+      POSTGRES_USER: hexfolio
+      POSTGRES_PASSWORD: hexfolio
+    ports:
+      - "5432"
+  localstack:
+    image: localstack/localstack:4
+    environment:
+      SERVICES: sqs
+    ports:
+      - "4566:4566"
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"

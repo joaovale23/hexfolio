@@ -1,0 +1,9 @@
+hexfolio:
+  queues:
+    provision: true
+    visibility-timeout-seconds: 1
+  trace:
+    poll-interval: 50ms
+    max-duration: 10s
+  contact:
+    rate-limit-per-hour: 1000

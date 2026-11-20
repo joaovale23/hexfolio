@@ -1,0 +1,81 @@
+spring:
+  application:
+    name: hexfolio
+  threads:
+    virtual:
+      enabled: true
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  mvc:
+    problemdetails:
+      enabled: true
+  docker:
+    compose:
+      enabled: false
+  mail:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:1025}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+  cloud:
+    aws:
+      region:
+        static: ${AWS_REGION:sa-east-1}
+
+hexfolio:
+  queues:
+    contact: hexfolio-contact
+    contact-dlq: hexfolio-contact-dlq
+    provision: false
+    max-receive-count: 3
+    visibility-timeout-seconds: 10
+  contact:
+    notify-to: ${CONTACT_NOTIFY_TO:dev@localhost}
+    from: ${CONTACT_FROM:hexfolio@localhost}
+    rate-limit-per-hour: 5
+  trace:
+    max-duration: 30s
+    poll-interval: 150ms
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  architecture:
+    source-base-url: https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/
+
+springdoc:
+  api-docs:
+    path: /api/docs/openapi.json
+  swagger-ui:
+    path: /api/docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  docker:
+    compose:
+      enabled: true
+      file: compose.yaml
+  cloud:
+    aws:
+      endpoint: http://localhost:4566
+      credentials:
+        access-key: test
+        secret-key: test
+      region:
+        static: sa-east-1
+hexfolio:
+  queues:
+    provision: true
