@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { followTrace, submitContact, type ContactInput } from '../api'
+import { HAS_API, followTrace, submitContact, type ContactInput } from '../api'
 import type { Strings } from '../i18n'
 import type { TraceEvent } from '../types'
 
@@ -44,6 +44,15 @@ export function ContactForm({ t, devMode, onTraceEvent, onTraceStart, events }: 
     onChange: (e: { target: { value: string } }) => setInput(prev => ({ ...prev, [key]: e.target.value })),
     'aria-invalid': Boolean(errors[key]),
   })
+
+  if (!HAS_API) {
+    return (
+      <div className="contact">
+        <p>{t.contactSoon}</p>
+        <p><a className="contact-link" href="https://www.linkedin.com/in/joaovitorvale" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
+      </div>
+    )
+  }
 
   return (
     <div className="contact">

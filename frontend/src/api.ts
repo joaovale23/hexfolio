@@ -1,10 +1,17 @@
 import type { ArchitectureMap, Lang, Loaded, Portfolio, TraceEvent } from './types'
 
-export const API_URL: string = (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:8080'
+/**
+ * Endereço da API. Em desenvolvimento, a local; no build, vem de VITE_API_URL.
+ * Sem ele, o site publicado funciona só com a cópia estática e o contato aponta para o LinkedIn.
+ */
+export const API_URL: string | null =
+  (import.meta.env.VITE_API_URL as string | undefined) || (import.meta.env.DEV ? 'http://localhost:8080' : null)
+export const HAS_API = API_URL !== null
 
 const snapshotUrl = (file: string) => `${import.meta.env.BASE_URL}snapshot/${file}`
 
 async function timedFetch<T>(path: string, timeoutMs: number): Promise<Loaded<T>> {
+  if (API_URL === null) throw new Error('API não configurada')
   const started = performance.now()
   const response = await fetch(API_URL + path, { signal: AbortSignal.timeout(timeoutMs) })
   if (!response.ok) throw new Error(`${response.status} em ${path}`)
@@ -40,6 +47,7 @@ export type SubmitResult =
   | { ok: false; status: number; title: string; errors: Record<string, string> }
 
 export async function submitContact(input: ContactInput): Promise<SubmitResult> {
+  if (API_URL === null) return { ok: false, status: 0, title: 'offline', errors: {} }
   try {
     const response = await fetch(`${API_URL}/api/contact`, {
       method: 'POST',
@@ -56,6 +64,7 @@ export async function submitContact(input: ContactInput): Promise<SubmitResult> 
 
 /** Abre o SSE de trace e entrega cada etapa. Devolve a função que fecha a conexão. */
 export function followTrace(traceUrl: string, onEvent: (event: TraceEvent) => void, onEnd: () => void): () => void {
+  if (API_URL === null) { onEnd(); return () => undefined }
   const source = new EventSource(API_URL + traceUrl)
   source.addEventListener('step', e => {
     const event = JSON.parse((e as MessageEvent).data) as TraceEvent

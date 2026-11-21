@@ -6,6 +6,10 @@ on:
     paths: ["frontend/**", ".github/workflows/frontend.yml"]
   pull_request:
     paths: ["frontend/**", ".github/workflows/frontend.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -25,3 +29,25 @@ jobs:
         run: npm test
       - name: Build
         run: npm run build
+        env:
+          BASE_PATH: /hexfolio/
+          # Endereço da API em produção: variável do repositório (Settings → Variables). Vazio = só a cópia estática.
+          VITE_API_URL: ${{ vars.API_URL }}
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: frontend/dist
+
+  deploy:
+    # Publica no GitHub Pages só o que chega na main, depois dos testes.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

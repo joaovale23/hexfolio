@@ -313,3 +313,4 @@ button { font: inherit; cursor: pointer; }
 .mini-hex .slice-contact { fill: var(--s-contact); }
 .chips.small li.has-icon { display: inline-flex; align-items: center; gap: 5px; padding-left: 6px; }
 .chips.small .skill-icon { width: 13px; height: 13px; }
+.contact-link { font: 600 15px var(--mono); color: var(--s-projects); }

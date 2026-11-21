@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { HAS_API } from '../api'
 import type { Strings } from '../i18n'
 import type { ArchComponent, Loaded } from '../types'
 
@@ -14,7 +15,7 @@ export function ApiPeek({ loaded, slice, servedBy, t }: Props) {
         <code>{loaded.request}</code>
         {loaded.source === 'api'
           ? <span className="peek-ok">{loaded.status} · {loaded.ms} ms · {t.fromApi}</span>
-          : <span className="peek-warn">{t.fromSnapshot} · {t.wakingUp}</span>}
+          : <span className="peek-warn">{t.fromSnapshot} · {HAS_API ? t.wakingUp : t.apiNotYet}</span>}
         {servedBy && (
           <span className="peek-by">{t.servedBy} <a href={servedBy.sourceUrl} target="_blank" rel="noreferrer">{servedBy.id}</a></span>
         )}
