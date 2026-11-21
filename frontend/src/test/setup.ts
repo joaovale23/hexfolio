@@ -13,3 +13,10 @@ Object.defineProperty(window, 'matchMedia', {
     addListener: () => undefined, removeListener: () => undefined, dispatchEvent: () => false,
   }),
 })
+
+// jsdom também não tem ResizeObserver.
+globalThis.ResizeObserver ??= class {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+} as unknown as typeof ResizeObserver

@@ -5,6 +5,7 @@ import { ComponentDetails } from './components/ComponentDetails'
 import { ContactForm } from './components/ContactForm'
 import { DevHex } from './components/DevHex'
 import { MiniHex, NormalHex } from './components/NormalHex'
+import { ScrollHint } from './components/ScrollHint'
 import { SectionContent } from './components/Sections'
 import { componentsLitBy, isFailure } from './hex/trace'
 import { SECTIONS, STRINGS, type SectionId } from './i18n'
@@ -27,6 +28,7 @@ export default function App() {
   const [events, setEvents] = useState<TraceEvent[]>([])
   const [current, setCurrent] = useState<TraceEvent | null>(null)
   const queue = useRef<TraceEvent[]>([])
+  const devSide = useRef<HTMLElement>(null)
   const playing = useRef(false)
   const isMobile = useMediaQuery('(max-width: 767px)')
   const t = STRINGS[lang]
@@ -116,7 +118,7 @@ export default function App() {
             <DevHex map={architecture.data} selected={selected} lit={lit} failing={current ? isFailure(current.step) : false}
                     onSelect={setSelected} t={t} />
           </div>
-          <aside className="dev-side">
+          <aside className="dev-side" ref={devSide}>
             <section className="dev-card">
               <h2>{t.piece}</h2>
               <ComponentDetails map={architecture.data} id={selected} t={t} extra={peekFor(selected)} />
@@ -126,6 +128,7 @@ export default function App() {
               <p className="hint">{t.liveTestHint}</p>
               {contactForm}
             </section>
+            <ScrollHint container={devSide} label={t.scrollMore} />
           </aside>
         </main>
       ) : (
@@ -138,6 +141,7 @@ export default function App() {
               <p className="meta">{p.profile.location} · <span className="ok">{p.profile.status}</span></p>
             </div>
             {sectionPanel(section)}
+            <ScrollHint label={t.scrollMore} />
           </div>
           <div className="normal-hex">
             <NormalHex initials={initials(p.profile.name)} active={section} onSelect={setSection} t={t} />

@@ -314,3 +314,44 @@ button { font: inherit; cursor: pointer; }
 .chips.small li.has-icon { display: inline-flex; align-items: center; gap: 5px; padding-left: 6px; }
 .chips.small .skill-icon { width: 13px; height: 13px; }
 .contact-link { font: 600 15px var(--mono); color: var(--s-projects); }
+
+/* ── indicador de rolagem: setinha translúcida que "quer descer" ── */
+.scroll-hint {
+  position: sticky; bottom: 0; z-index: 5;
+  height: 0; overflow: visible;
+  display: flex; justify-content: center;
+  pointer-events: none;
+  opacity: 0; transition: opacity .35s ease;
+}
+.scroll-hint.is-visible { opacity: 1; }
+/* esmaecido do conteúdo logo acima da setinha */
+.scroll-hint::before {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 96px;
+  background: linear-gradient(to bottom, transparent, var(--hint-bg, var(--paper)) 85%);
+}
+.scroll-hint button {
+  position: absolute; bottom: 14px;
+  width: 40px; height: 40px; border-radius: 50%; padding: 0;
+  display: grid; place-items: center;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--ink); opacity: .6;
+  animation: nudge 1.8s ease-in-out infinite;
+  transition: opacity .2s;
+}
+.scroll-hint.is-visible button { pointer-events: auto; }
+.scroll-hint button:hover { opacity: 1; animation-play-state: paused; }
+.scroll-hint svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.dev-side { position: relative; --hint-bg: var(--bp); }
+.dev-side .scroll-hint::before { height: 64px; }
+.is-dev .scroll-hint button { background: color-mix(in srgb, var(--bp) 75%, transparent); border-color: var(--rule); color: var(--lit); }
+
+/* O JSON da resposta rola dentro da própria caixa, sem alargar o painel. */
+.dev-side { overflow-x: hidden; grid-template-columns: minmax(0, 1fr); }
+.dev-card, .details { min-width: 0; }
+.peek-json { max-width: 100%; white-space: pre; overflow: auto; }

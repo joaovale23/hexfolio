@@ -44,6 +44,7 @@ const pt = {
     NOTIFIED: 'e-mail enviado', FAILED: 'foi para a DLQ',
   } satisfies Record<Step, string>,
   selectHint: 'Clique numa peça para ver o que ela faz.',
+  scrollMore: 'Rolar para ver mais',
   theme: 'tema',
 }
 
@@ -86,6 +87,7 @@ const en: typeof pt = {
     NOTIFIED: 'email sent', FAILED: 'sent to the DLQ',
   },
   selectHint: 'Click a piece to see what it does.',
+  scrollMore: 'Scroll for more',
   theme: 'theme',
 }
 
