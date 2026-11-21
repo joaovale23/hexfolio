@@ -9,6 +9,11 @@ describe('ícones de habilidades', () => {
     expect(semIcone).toEqual([])
   })
 
+  it('toda tag de projeto tem ícone', () => {
+    const semIcone = [pt, en].flatMap(p => p.projects.flatMap(pr => pr.tags)).filter(tag => !hasSkillIcon(tag))
+    expect(semIcone).toEqual([])
+  })
+
   it('reconhece tags de projeto com versão', () => {
     expect(normalizeSkill('Java 21')).toBe('java')
     expect(normalizeSkill('Spring Boot 3')).toBe('spring boot')

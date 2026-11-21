@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import {
-  siApachemaven, siClaude, siDocker, siFirebase, siFlutter, siFlyway, siGithubactions, siGooglecloud, 
-  siHibernate, siJunit5, siLinux, siNextdotjs, siPostgresql, siReact, siRedis, siSpringboot, siSpringsecurity, siTypescript,
+  siApachemaven, siClaude, siDocker, siFastapi, siFirebase, siFlutter, siFlyway, siGithubactions, siGooglecloud, 
+  siHibernate, siJunit5, siLinux, siNextdotjs, siPostgresql, siPython, siReact, siRedis, siSpringboot, siSpringsecurity, siTypescript, siVuedotjs,
 } from 'simple-icons'
 
 interface Brand { path: string; hex: string }
@@ -12,6 +12,7 @@ const BRANDS: Record<string, Brand> = {
   maven: siApachemaven, postgresql: siPostgresql, redis: siRedis, 'junit 5': siJunit5, junit: siJunit5, react: siReact, 'react native': siReact,
   typescript: siTypescript, 'next.js': siNextdotjs, flutter: siFlutter, docker: siDocker, 'github actions': siGithubactions,
   'google cloud': siGooglecloud, firebase: siFirebase, linux: siLinux, 'claude code': siClaude,
+  python: siPython, fastapi: siFastapi, 'vue.js': siVuedotjs,
 }
 
 interface Glyph { color: string; draw: ReactNode }
