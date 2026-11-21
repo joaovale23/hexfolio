@@ -1,0 +1,331 @@
+{
+  "components": [
+    {
+      "id": "ArchitectureMap",
+      "kind": "DOMAIN_MODEL",
+      "description": "Mapa de portas, adaptadores e casos de uso, gerado a partir do código",
+      "className": "io.github.joaovale23.hexfolio.domain.model.ArchitectureMap",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/domain/model/ArchitectureMap.java"
+    },
+    {
+      "id": "ContactMessage",
+      "kind": "DOMAIN_MODEL",
+      "description": "Mensagem de contato, com validação e ciclo de vida",
+      "className": "io.github.joaovale23.hexfolio.domain.model.ContactMessage",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/domain/model/ContactMessage.java"
+    },
+    {
+      "id": "Portfolio",
+      "kind": "DOMAIN_MODEL",
+      "description": "Portfólio em um idioma: perfil, experiências, projetos, habilidades e formação",
+      "className": "io.github.joaovale23.hexfolio.domain.model.Portfolio",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/domain/model/Portfolio.java"
+    },
+    {
+      "id": "TraceEvent",
+      "kind": "DOMAIN_MODEL",
+      "description": "Etapa registrada no caminho de uma mensagem, usada na animação ao vivo",
+      "className": "io.github.joaovale23.hexfolio.domain.model.TraceEvent",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/domain/model/TraceEvent.java"
+    },
+    {
+      "id": "DescribeArchitectureService",
+      "kind": "USE_CASE",
+      "description": "Monta o mapa da arquitetura uma vez e o reaproveita",
+      "className": "io.github.joaovale23.hexfolio.application.service.DescribeArchitectureService",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/service/DescribeArchitectureService.java"
+    },
+    {
+      "id": "GetPortfolioService",
+      "kind": "USE_CASE",
+      "description": "Monta o portfólio no idioma pedido",
+      "className": "io.github.joaovale23.hexfolio.application.service.GetPortfolioService",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/service/GetPortfolioService.java"
+    },
+    {
+      "id": "ProcessContactService",
+      "kind": "USE_CASE",
+      "description": "Notifica a chegada de um contato; é idempotente e desiste depois das tentativas",
+      "className": "io.github.joaovale23.hexfolio.application.service.ProcessContactService",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/service/ProcessContactService.java"
+    },
+    {
+      "id": "SubmitContactService",
+      "kind": "USE_CASE",
+      "description": "Recebe a mensagem do formulário, grava e publica na fila",
+      "className": "io.github.joaovale23.hexfolio.application.service.SubmitContactService",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/service/SubmitContactService.java"
+    },
+    {
+      "id": "TraceContactService",
+      "kind": "USE_CASE",
+      "description": "Lê as etapas já percorridas por uma mensagem",
+      "className": "io.github.joaovale23.hexfolio.application.service.TraceContactService",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/service/TraceContactService.java"
+    },
+    {
+      "id": "DescribeArchitecture",
+      "kind": "INBOUND_PORT",
+      "description": "Devolve o mapa real de portas e adaptadores, desenhado no modo dev",
+      "className": "io.github.joaovale23.hexfolio.application.port.in.DescribeArchitecture",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/in/DescribeArchitecture.java"
+    },
+    {
+      "id": "GetPortfolio",
+      "kind": "INBOUND_PORT",
+      "description": "Devolve o portfólio inteiro em um idioma",
+      "className": "io.github.joaovale23.hexfolio.application.port.in.GetPortfolio",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/in/GetPortfolio.java"
+    },
+    {
+      "id": "ProcessContact",
+      "kind": "INBOUND_PORT",
+      "description": "Processa uma mensagem que saiu da fila: notifica ou desiste dela",
+      "className": "io.github.joaovale23.hexfolio.application.port.in.ProcessContact",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/in/ProcessContact.java"
+    },
+    {
+      "id": "SubmitContact",
+      "kind": "INBOUND_PORT",
+      "description": "Valida, grava e enfileira uma mensagem de contato",
+      "className": "io.github.joaovale23.hexfolio.application.port.in.SubmitContact",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/in/SubmitContact.java"
+    },
+    {
+      "id": "TraceContact",
+      "kind": "INBOUND_PORT",
+      "description": "Devolve as etapas já percorridas por uma mensagem de contato",
+      "className": "io.github.joaovale23.hexfolio.application.port.in.TraceContact",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/in/TraceContact.java"
+    },
+    {
+      "id": "ArchitectureSource",
+      "kind": "OUTBOUND_PORT",
+      "description": "Descobre as peças da arquitetura a partir do próprio código",
+      "className": "io.github.joaovale23.hexfolio.application.port.out.ArchitectureSource",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/out/ArchitectureSource.java"
+    },
+    {
+      "id": "ContactQueue",
+      "kind": "OUTBOUND_PORT",
+      "description": "Publica uma mensagem de contato para processamento assíncrono",
+      "className": "io.github.joaovale23.hexfolio.application.port.out.ContactQueue",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/out/ContactQueue.java"
+    },
+    {
+      "id": "ContactRepository",
+      "kind": "OUTBOUND_PORT",
+      "description": "Grava mensagens de contato e as etapas do caminho de cada uma",
+      "className": "io.github.joaovale23.hexfolio.application.port.out.ContactRepository",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/out/ContactRepository.java"
+    },
+    {
+      "id": "Notifier",
+      "kind": "OUTBOUND_PORT",
+      "description": "Avisa o João que chegou uma mensagem",
+      "className": "io.github.joaovale23.hexfolio.application.port.out.Notifier",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/out/Notifier.java"
+    },
+    {
+      "id": "PortfolioCatalog",
+      "kind": "OUTBOUND_PORT",
+      "description": "Lê o conteúdo do portfólio",
+      "className": "io.github.joaovale23.hexfolio.application.port.out.PortfolioCatalog",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/application/port/out/PortfolioCatalog.java"
+    },
+    {
+      "id": "ArchitectureController",
+      "kind": "INBOUND_ADAPTER",
+      "description": "GET /api/architecture: entrega o mapa real de portas e adaptadores",
+      "className": "io.github.joaovale23.hexfolio.adapter.in.web.ArchitectureController",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/in/web/ArchitectureController.java"
+    },
+    {
+      "id": "ContactController",
+      "kind": "INBOUND_ADAPTER",
+      "description": "POST /api/contact: recebe o formulário e responde 202 sem esperar o e-mail",
+      "className": "io.github.joaovale23.hexfolio.adapter.in.web.ContactController",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/in/web/ContactController.java"
+    },
+    {
+      "id": "ContactTraceController",
+      "kind": "INBOUND_ADAPTER",
+      "description": "GET /api/contact/{id}/trace: transmite ao vivo (SSE) as etapas da mensagem",
+      "className": "io.github.joaovale23.hexfolio.adapter.in.web.ContactTraceController",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/in/web/ContactTraceController.java"
+    },
+    {
+      "id": "PortfolioController",
+      "kind": "INBOUND_ADAPTER",
+      "description": "GET /api/portfolio: entrega o conteúdo dos seis lados do hexágono",
+      "className": "io.github.joaovale23.hexfolio.adapter.in.web.PortfolioController",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/in/web/PortfolioController.java"
+    },
+    {
+      "id": "SqsContactListener",
+      "kind": "INBOUND_ADAPTER",
+      "description": "Consome a fila AWS SQS e aciona o processamento do contato",
+      "className": "io.github.joaovale23.hexfolio.adapter.in.messaging.SqsContactListener",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/in/messaging/SqsContactListener.java"
+    },
+    {
+      "id": "SqsDeadLetterListener",
+      "kind": "INBOUND_ADAPTER",
+      "description": "Consome a DLQ e registra a desistência depois das tentativas",
+      "className": "io.github.joaovale23.hexfolio.adapter.in.messaging.SqsDeadLetterListener",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/in/messaging/SqsDeadLetterListener.java"
+    },
+    {
+      "id": "AnnotationArchitectureSource",
+      "kind": "OUTBOUND_ADAPTER",
+      "description": "Lê as anotações do próprio código para desenhar o hexágono",
+      "className": "io.github.joaovale23.hexfolio.adapter.out.introspection.AnnotationArchitectureSource",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/out/introspection/AnnotationArchitectureSource.java"
+    },
+    {
+      "id": "JpaContactRepository",
+      "kind": "OUTBOUND_ADAPTER",
+      "description": "Grava mensagens e etapas do caminho no PostgreSQL (Spring Data JPA)",
+      "className": "io.github.joaovale23.hexfolio.adapter.out.persistence.JpaContactRepository",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/out/persistence/JpaContactRepository.java"
+    },
+    {
+      "id": "JpaPortfolioCatalog",
+      "kind": "OUTBOUND_ADAPTER",
+      "description": "Lê o conteúdo do portfólio no PostgreSQL (Spring Data JPA)",
+      "className": "io.github.joaovale23.hexfolio.adapter.out.persistence.JpaPortfolioCatalog",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/out/persistence/JpaPortfolioCatalog.java"
+    },
+    {
+      "id": "SmtpNotifier",
+      "kind": "OUTBOUND_ADAPTER",
+      "description": "Envia o aviso de novo contato por e-mail (SMTP)",
+      "className": "io.github.joaovale23.hexfolio.adapter.out.notification.SmtpNotifier",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/out/notification/SmtpNotifier.java"
+    },
+    {
+      "id": "SqsContactQueue",
+      "kind": "OUTBOUND_ADAPTER",
+      "description": "Publica o id da mensagem na fila AWS SQS",
+      "className": "io.github.joaovale23.hexfolio.adapter.out.messaging.SqsContactQueue",
+      "sourceUrl": "https://github.com/joaovale23/hexfolio/blob/main/backend/src/main/java/io/github/joaovale23/hexfolio/adapter/out/messaging/SqsContactQueue.java"
+    }
+  ],
+  "links": [
+    {
+      "from": "SqsContactListener",
+      "to": "ProcessContact",
+      "relation": "USES"
+    },
+    {
+      "from": "SqsDeadLetterListener",
+      "to": "ProcessContact",
+      "relation": "USES"
+    },
+    {
+      "from": "ArchitectureController",
+      "to": "DescribeArchitecture",
+      "relation": "USES"
+    },
+    {
+      "from": "ContactController",
+      "to": "SubmitContact",
+      "relation": "USES"
+    },
+    {
+      "from": "ContactTraceController",
+      "to": "TraceContact",
+      "relation": "USES"
+    },
+    {
+      "from": "PortfolioController",
+      "to": "GetPortfolio",
+      "relation": "USES"
+    },
+    {
+      "from": "AnnotationArchitectureSource",
+      "to": "ArchitectureSource",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "SqsContactQueue",
+      "to": "ContactQueue",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "SmtpNotifier",
+      "to": "Notifier",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "JpaContactRepository",
+      "to": "ContactRepository",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "JpaPortfolioCatalog",
+      "to": "PortfolioCatalog",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "DescribeArchitectureService",
+      "to": "DescribeArchitecture",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "DescribeArchitectureService",
+      "to": "ArchitectureSource",
+      "relation": "USES"
+    },
+    {
+      "from": "GetPortfolioService",
+      "to": "GetPortfolio",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "GetPortfolioService",
+      "to": "PortfolioCatalog",
+      "relation": "USES"
+    },
+    {
+      "from": "ProcessContactService",
+      "to": "ProcessContact",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "ProcessContactService",
+      "to": "ContactRepository",
+      "relation": "USES"
+    },
+    {
+      "from": "ProcessContactService",
+      "to": "Notifier",
+      "relation": "USES"
+    },
+    {
+      "from": "SubmitContactService",
+      "to": "SubmitContact",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "SubmitContactService",
+      "to": "ContactRepository",
+      "relation": "USES"
+    },
+    {
+      "from": "SubmitContactService",
+      "to": "ContactQueue",
+      "relation": "USES"
+    },
+    {
+      "from": "TraceContactService",
+      "to": "TraceContact",
+      "relation": "IMPLEMENTS"
+    },
+    {
+      "from": "TraceContactService",
+      "to": "ContactRepository",
+      "relation": "USES"
+    }
+  ]
+}

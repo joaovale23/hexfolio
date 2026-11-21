@@ -9,7 +9,7 @@
 
 ## Status
 
-🚧 Em desenvolvimento. O projeto começa pela especificação:
+🚧 Backend e front-end funcionando localmente; o deploy (Fly.io + GitHub Pages) é o próximo passo. O projeto começou pela especificação:
 
 | Documento | Conteúdo |
 |---|---|
@@ -22,7 +22,23 @@
 
 Decisões de arquitetura: [`docs/adr`](docs/adr).
 
-## Rodando o backend
+## Rodando localmente
+
+### Front-end
+
+Requer Node 24.
+
+```bash
+cd frontend
+npm install
+npm run dev        # http://localhost:5173, usa a API em http://localhost:8080 (VITE_API_URL para mudar)
+npm test           # Vitest + Testing Library
+npm run snapshot   # atualiza a cópia estática a partir da API rodando
+```
+
+Sem a API no ar, a página mostra a cópia estática em `public/snapshot` e o formulário de contato aponta para o LinkedIn.
+
+### Backend
 
 Requer Java 25 e Docker.
 

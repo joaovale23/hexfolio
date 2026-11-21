@@ -1,0 +1,220 @@
+{
+  "lang": "pt",
+  "profile": {
+    "name": "João Vitor Vale",
+    "role": "Desenvolvedor Full Stack · Java e Spring Boot",
+    "location": "Guarujá – SP, Brasil",
+    "status": "Aberto a novas oportunidades",
+    "bio": "Na ZeroUm Mobilidade, entreguei em seis meses seis sistemas do zero, da especificação ao deploy: backends em Java 21 + Spring Boot 3 com arquitetura hexagonal e mais de 1.100 testes automatizados, front-end em React e apps mobile. Uso IA no desenvolvimento com método: especificação, plano, testes e revisão.",
+    "tags": [
+      "back-end Java",
+      "arquitetura hexagonal",
+      "testes automatizados",
+      "full stack",
+      "IA no desenvolvimento"
+    ]
+  },
+  "experiences": [
+    {
+      "company": "ZeroUm Mobilidade (LVL Participações)",
+      "role": "Analista de Sistemas Júnior, atuando como Desenvolvedor Full Stack",
+      "period": "jun/2026 – atual",
+      "location": "São Vicente – SP",
+      "description": "Responsável pelos sistemas internos de uma plataforma de mobilidade urbana presente em 9 cidades da Baixada Santista: levanto requisitos com a diretoria, desenho a arquitetura, implemento, testo e faço o deploy. Participo do Scrum, com Jira, junto à equipe que desenvolve o app principal.",
+      "highlights": [
+        "Dois backends em Java 21 + Spring Boot 3 (ServiJá e conTroll), com Spring Security/JWT, JPA, Flyway, Redis e mais de 1.100 testes.",
+        "Pradis: disparo e atendimento pela API oficial do WhatsApp, com fila serverless (Cloud Tasks + Cloud Functions), chatbot e permissões por papel.",
+        "Checagem de motoristas: antecedentes por CPF em 8 fontes externas, com fila de processamento e lote por planilha.",
+        "Sintonia: app Flutter + Firebase publicado na Google Play.",
+        "ERP de revenda de gás (em produção): ponto por geolocalização, controle de vasilhames e app do entregador com navegação por voz."
+      ]
+    },
+    {
+      "company": "Concept Coworking",
+      "role": "Assistente Administrativo",
+      "period": "fev/2026 – jun/2026",
+      "location": "Guarujá – SP",
+      "description": "Rotinas administrativas do escritório, em paralelo à graduação em Análise e Desenvolvimento de Sistemas.",
+      "highlights": []
+    }
+  ],
+  "projects": [
+    {
+      "slug": "hexfolio",
+      "name": "hexfolio",
+      "description": "Este portfólio: o layout é a arquitetura do sistema que o serve.",
+      "highlights": [
+        "Java 25 + Spring Boot 4.2 em arquitetura hexagonal, com o mapa da arquitetura gerado a partir do código.",
+        "Formulário de contato assíncrono com AWS SQS, DLQ e consumidor idempotente.",
+        "Testes com JUnit 5, Mockito, Testcontainers, LocalStack e ArchUnit."
+      ],
+      "tags": [
+        "Java 25",
+        "Spring Boot 4",
+        "AWS SQS",
+        "PostgreSQL",
+        "React"
+      ],
+      "status": "em construção",
+      "repoUrl": "https://github.com/joaovale23/hexfolio",
+      "demoUrl": null,
+      "privateCode": false
+    },
+    {
+      "slug": "servija",
+      "name": "ServiJá",
+      "description": "Marketplace de serviços com backend, painel administrativo e app.",
+      "highlights": [
+        "Java 21 + Spring Boot 3 com 15 módulos de negócio: autenticação, agendamentos, pagamentos, chat e auditoria.",
+        "939 testes no backend: 604 unitários (JUnit 5 + Mockito) e 335 de integração (Testcontainers + PostgreSQL).",
+        "PostgreSQL + Flyway (34 migrations), Redis, AWS S3 e métricas no Prometheus.",
+        "CI no GitHub Actions, Docker Compose e 21 ADRs."
+      ],
+      "tags": [
+        "Java 21",
+        "Spring Boot 3",
+        "PostgreSQL",
+        "Redis",
+        "Testcontainers",
+        "React"
+      ],
+      "status": "em produção",
+      "repoUrl": null,
+      "demoUrl": null,
+      "privateCode": true
+    },
+    {
+      "slug": "controll",
+      "name": "conTroll",
+      "description": "Plataforma de chamados (helpdesk) com SLA, prioridades e trilha de auditoria.",
+      "highlights": [
+        "Arquitetura hexagonal: domínio, casos de uso, portas e adaptadores.",
+        "Auditoria de segurança em Spring Security + JWT, com cinco correções aplicadas.",
+        "Logs estruturados, métricas e health checks; 167 testes no backend e 57 no front."
+      ],
+      "tags": [
+        "Java 21",
+        "Spring Boot",
+        "Hexagonal",
+        "Spring Security",
+        "React"
+      ],
+      "status": "em produção",
+      "repoUrl": null,
+      "demoUrl": null,
+      "privateCode": true
+    },
+    {
+      "slug": "etl-ans",
+      "name": "ETL ANS",
+      "description": "Pipeline ETL com dados públicos da ANS, API REST em FastAPI e painel web em Vue.",
+      "highlights": [],
+      "tags": [
+        "Python",
+        "PostgreSQL",
+        "FastAPI",
+        "Vue.js"
+      ],
+      "status": "concluído",
+      "repoUrl": "https://github.com/joaovale23/etl-ans",
+      "demoUrl": "https://etl-ans.vercel.app/",
+      "privateCode": false
+    },
+    {
+      "slug": "locvac",
+      "name": "LocVac",
+      "description": "Aplicativo móvel que substitui a carteira de vacinação em papel.",
+      "highlights": [],
+      "tags": [
+        "React Native",
+        "TypeScript",
+        "Java"
+      ],
+      "status": "acadêmico",
+      "repoUrl": "https://github.com/claraneves23/LocVac",
+      "demoUrl": null,
+      "privateCode": false
+    }
+  ],
+  "skillGroups": [
+    {
+      "title": "Back-end",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Spring Security",
+        "Hibernate / JPA",
+        "Flyway",
+        "Maven",
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    {
+      "title": "Testes",
+      "skills": [
+        "JUnit 5",
+        "Mockito",
+        "Testcontainers",
+        "ArchUnit"
+      ]
+    },
+    {
+      "title": "Arquitetura",
+      "skills": [
+        "Hexagonal",
+        "Clean Architecture",
+        "DDD",
+        "SOLID",
+        "ADRs"
+      ]
+    },
+    {
+      "title": "Front-end e mobile",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Flutter",
+        "React Native"
+      ]
+    },
+    {
+      "title": "DevOps e nuvem",
+      "skills": [
+        "Docker",
+        "GitHub Actions",
+        "AWS (S3, SQS)",
+        "Google Cloud",
+        "Firebase",
+        "Linux"
+      ]
+    },
+    {
+      "title": "IA no desenvolvimento",
+      "skills": [
+        "Spec-driven development",
+        "Claude Code",
+        "Engenharia de prompt",
+        "Integração com LLMs"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "course": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+      "institution": "FATEC Rubens Lara",
+      "period": "2023 – 2026"
+    },
+    {
+      "course": "Programa de Aprendizagem",
+      "institution": "CAMPS Santos",
+      "period": "concluído em mar/2026"
+    },
+    {
+      "course": "Idiomas",
+      "institution": "Português nativo · inglês e espanhol intermediários · francês básico",
+      "period": ""
+    }
+  ]
+}

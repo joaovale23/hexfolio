@@ -2,34 +2,34 @@
 
 React + TypeScript + Vite, publicado no GitHub Pages. O hexágono é desenhado em SVG.
 
-## Modo normal
+## Modo normal: editorial claro
 
-- O hexágono fica no centro, com nome e cargo no meio e as seis seções nos lados.
-- Ao clicar num lado, um painel abre ao lado do hexágono (no desktop) ou abaixo dele (no tablet).
+- Fundo creme, títulos em serifa (Fraunces), texto em Inter.
+- À esquerda: cargo, nome grande, uma frase de apresentação e, logo abaixo, o conteúdo da seção escolhida.
+- À direita: o hexágono dividido em **seis fatias de cores sólidas**, uma por seção. A fatia ativa salta para fora. O centro tem as iniciais.
 - Sobre já vem aberto, para que a primeira tela já diga quem sou.
 
-## Modo dev
+## Modo dev: planta técnica (blueprint)
 
-- Um interruptor fixo no topo: `modo dev`.
-- O hexágono se transforma, com animação: o centro vira **Domínio**, as bordas mostram as **portas** e os **adaptadores** aparecem por fora. Os de entrada ficam à esquerda (HTTP, consumidor SQS) e os de saída à direita (PostgreSQL, publicador SQS, SMTP).
-- Os dados vêm de `GET /api/architecture`, então o desenho nunca mostra uma classe que não existe.
-- Clicar numa peça mostra o nome da classe, a responsabilidade e o link para o código.
-- Cada seção do modo normal ganha um rodapé com a requisição que a carregou, o JSON da resposta e o tempo.
-- **Contato ao vivo:** depois do envio, o front abre o SSE de trace e acende cada peça na ordem em que os eventos chegam, com o tempo de cada etapa.
+- Um interruptor fixo no topo: `modo dev`. A página escurece em azul de planta, com grade.
+- O diagrama vem de `GET /api/architecture` e é organizado em colunas, na ordem em que uma requisição atravessa o sistema: adaptador de entrada → porta de entrada → caso de uso → domínio → porta de saída → adaptador de saída. Cada caso de uso fica na linha da porta que implementa. As larguras saem dos nomes reais, e nomes longos quebram em duas linhas.
+- **Painel lateral sempre visível**, sem rolagem da página:
+  - **Peça selecionada:** tipo, descrição, ligações e link para o código. Quando a peça é um controller que já respondeu nesta página (`PortfolioController`, `ArchitectureController`), o painel mostra a requisição real: rota, status, tempo, se veio da API ou da cópia estática, e o JSON.
+  - **Teste ao vivo:** o formulário de contato. Depois do envio, o formulário dá lugar à linha do tempo das etapas, com o tempo de cada uma.
+- **Contato ao vivo:** o front abre o SSE de trace e acende cada peça na ordem dos eventos, segurando cada etapa por 750 ms para dar para acompanhar. Uma falha acende em vermelho.
 
 ## Celular (largura < 768 px)
 
-- Sem hexágono interativo. O topo mostra um hexágono pequeno e estático como marca, e as seções aparecem em lista vertical.
-- O modo dev mostra o trace como uma linha do tempo vertical.
+- Um hexágono pequeno e estático de seis cores como marca, e as seções em lista vertical.
+- O formulário de contato mostra a linha do tempo das etapas.
 
 ## Conteúdo sem API
 
-- No build, um script grava `portfolio.pt.json` e `portfolio.en.json` com o conteúdo do repositório.
+- `npm run snapshot` grava `public/snapshot/portfolio.pt.json`, `portfolio.en.json` e `architecture.json` a partir da API.
 - A página mostra essa cópia na hora e troca pelos dados da API quando eles chegam.
-- Se a API estiver dormindo (o Fly.io desliga a máquina quando não há acesso), o modo dev avisa: "acordando o servidor…".
+- No modo dev, a requisição mostra "da cópia estática · acordando o servidor…" enquanto a API não responde.
 
 ## Acessibilidade
 
-- O hexágono é navegável por teclado, e cada lado é um `button` com rótulo.
+- As fatias e as peças são `role="button"`, navegáveis por teclado (Enter e espaço), com rótulo.
 - As animações respeitam `prefers-reduced-motion`.
-- Há tema claro e escuro.
