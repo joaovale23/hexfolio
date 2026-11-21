@@ -338,7 +338,7 @@ button { font: inherit; cursor: pointer; }
 }
 .scroll-hint.is-visible button { pointer-events: auto; }
 .scroll-hint button:hover { opacity: .9; animation-play-state: paused; }
-.scroll-hint svg { display: block; width: 40px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.scroll-hint svg { display: block; width: 26px; height: 9px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 @keyframes nudge {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
