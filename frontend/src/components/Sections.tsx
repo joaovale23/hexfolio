@@ -1,4 +1,6 @@
+import { useState, type CSSProperties } from 'react'
 import type { SectionId, Strings } from '../i18n'
+import { SkillIcon, hasSkillIcon, skillColor } from './SkillIcon'
 import type { Portfolio } from '../types'
 
 interface Props { id: SectionId; portfolio: Portfolio; t: Strings }
@@ -30,23 +32,7 @@ export function SectionContent({ id, portfolio, t }: Props) {
     case 'projects':
       return (
         <div className="cards">
-          {portfolio.projects.map(p => (
-            <article key={p.slug} className="card">
-              <header>
-                <h3>{p.name}</h3>
-                <span className="status">{p.status}</span>
-              </header>
-              <p>{p.description}</p>
-              {p.highlights.length > 0 && <ul className="bullets">{p.highlights.map(h => <li key={h}>{h}</li>)}</ul>}
-              <ul className="chips small">{p.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
-              <footer>
-                {p.privateCode
-                  ? <span className="private">{t.privateCode}</span>
-                  : <a href={p.repoUrl ?? '#'} target="_blank" rel="noreferrer">{t.repo} ↗</a>}
-                {p.demoUrl && <a href={p.demoUrl} target="_blank" rel="noreferrer">{t.demo} ↗</a>}
-              </footer>
-            </article>
-          ))}
+          {portfolio.projects.map(p => <ProjectCard key={p.slug} project={p} t={t} />)}
         </div>
       )
     case 'skills':
@@ -55,7 +41,14 @@ export function SectionContent({ id, portfolio, t }: Props) {
           {portfolio.skillGroups.map(g => (
             <section key={g.title}>
               <h3>{g.title}</h3>
-              <ul className="chips">{g.skills.map(s => <li key={s}>{s}</li>)}</ul>
+              <ul className="skills">
+                {g.skills.map(s => (
+                  <li key={s} style={{ '--brand': skillColor(s) } as CSSProperties}>
+                    <SkillIcon name={s} />
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
             </section>
           ))}
         </div>
@@ -74,4 +67,37 @@ export function SectionContent({ id, portfolio, t }: Props) {
     case 'contact':
       return null
   }
+}
+
+/** Card de projeto: os destaques ficam recolhidos para a lista caber na tela. */
+function ProjectCard({ project: p, t }: { project: Portfolio['projects'][number]; t: Strings }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <article className="card">
+      <header>
+        <h3>{p.name}</h3>
+        <span className="status">{p.status}</span>
+      </header>
+      <p>{p.description}</p>
+      <ul className="chips small">
+        {p.tags.map(tag => (
+          <li key={tag} className={hasSkillIcon(tag) ? 'has-icon' : undefined}>
+            {hasSkillIcon(tag) && <SkillIcon name={tag} />}{tag}
+          </li>
+        ))}
+      </ul>
+      {open && <ul className="bullets">{p.highlights.map(h => <li key={h}>{h}</li>)}</ul>}
+      <footer>
+        {p.highlights.length > 0 && (
+          <button type="button" className="toggle" aria-expanded={open} onClick={() => setOpen(o => !o)}>
+            {open ? t.lessHighlights : `${t.moreHighlights} (${p.highlights.length})`}
+          </button>
+        )}
+        {p.privateCode
+          ? <span className="private">{t.privateCode}</span>
+          : <a href={p.repoUrl ?? '#'} target="_blank" rel="noreferrer">{t.repo} ↗</a>}
+        {p.demoUrl && <a href={p.demoUrl} target="_blank" rel="noreferrer">{t.demo} ↗</a>}
+      </footer>
+    </article>
+  )
 }
