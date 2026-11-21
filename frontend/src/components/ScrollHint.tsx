@@ -47,7 +47,7 @@ export function ScrollHint({ container, label }: Props) {
   return (
     <div className={`scroll-hint${visible ? ' is-visible' : ''}`} aria-hidden={!visible}>
       <button type="button" onClick={scrollDown} aria-label={label} tabIndex={visible ? 0 : -1}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        <svg viewBox="0 0 40 14" aria-hidden="true"><path d="M2 2 20 12 38 2" /></svg>
       </button>
     </div>
   )

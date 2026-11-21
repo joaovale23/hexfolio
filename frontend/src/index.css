@@ -330,26 +330,22 @@ button { font: inherit; cursor: pointer; }
   background: linear-gradient(to bottom, transparent, var(--hint-bg, var(--paper)) 85%);
 }
 .scroll-hint button {
-  position: absolute; bottom: 14px;
-  width: 40px; height: 40px; border-radius: 50%; padding: 0;
-  display: grid; place-items: center;
-  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
-  background: color-mix(in srgb, var(--card) 70%, transparent);
-  backdrop-filter: blur(6px);
-  color: var(--ink); opacity: .6;
+  position: absolute; bottom: 12px;
+  padding: 8px 12px; border: 0; background: none;
+  color: var(--ink); opacity: .45;
   animation: nudge 1.8s ease-in-out infinite;
   transition: opacity .2s;
 }
 .scroll-hint.is-visible button { pointer-events: auto; }
-.scroll-hint button:hover { opacity: 1; animation-play-state: paused; }
-.scroll-hint svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.scroll-hint button:hover { opacity: .9; animation-play-state: paused; }
+.scroll-hint svg { display: block; width: 40px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 @keyframes nudge {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
 }
 .dev-side { position: relative; --hint-bg: var(--bp); }
 .dev-side .scroll-hint::before { height: 64px; }
-.is-dev .scroll-hint button { background: color-mix(in srgb, var(--bp) 75%, transparent); border-color: var(--rule); color: var(--lit); }
+.is-dev .scroll-hint button { color: var(--lit); opacity: .6; }
 
 /* O JSON da resposta rola dentro da própria caixa, sem alargar o painel. */
 .dev-side { overflow-x: hidden; grid-template-columns: minmax(0, 1fr); }
