@@ -34,4 +34,4 @@ Visitante ──POST /api/contact──▶ ContactController            (adaptad
 |---|---|---|
 | Testes (CI) | LocalStack via Testcontainers | Adaptador falso que guarda os e-mails em memória |
 | Local | LocalStack via Docker Compose | Mailpit (interface web em `localhost:8025`) |
-| Produção | AWS SQS (São Paulo, `sa-east-1`) | SMTP real, credenciais em segredos do Fly.io |
+| Produção | AWS SQS (`us-east-1`) | Brevo (SMTP), credenciais nas variáveis do Render |

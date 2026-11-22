@@ -10,7 +10,7 @@ Base: `/api`. As respostas são JSON, e os erros seguem o **RFC 9457** (Problem 
 | `POST /api/contact` | `SubmitContact` | `202 Accepted` com `{ "id": "…", "traceUrl": "/api/contact/{id}/trace" }` |
 | `GET /api/contact/{id}/trace` | `TraceContact` | `text/event-stream`: um evento por etapa, fecha ao chegar em `NOTIFIED` ou `FAILED`, ou depois de 30 s |
 | `GET /api/architecture` | `DescribeArchitecture` | `200` com o domínio, as portas e os adaptadores, e para cada um a classe e a URL no GitHub |
-| `GET /actuator/health` | — | Health check para o Fly.io |
+| `GET /actuator/health` | — | Health check para o Render |
 
 ## Exemplos
 

@@ -9,7 +9,7 @@
 
 ## Status
 
-🚧 Backend e front-end funcionando localmente; o deploy (Fly.io + GitHub Pages) é o próximo passo. O projeto começou pela especificação:
+Front no ar em **[joaovale23.github.io/hexfolio](https://joaovale23.github.io/hexfolio/)**. API no Render, banco no Neon, fila no AWS SQS, tudo nos planos gratuitos ([ADR 0005](docs/adr/0005-hospedagem.md)). O projeto começou pela especificação:
 
 | Documento | Conteúdo |
 |---|---|
@@ -78,4 +78,4 @@ backend/src/main/java/io/github/joaovale23/hexfolio
 
 ## Stack
 
-Java 25 · Spring Boot 4.2 · Spring Data JPA · PostgreSQL · Flyway · Spring Cloud AWS (SQS) · JUnit 5 · Mockito · Testcontainers · LocalStack · ArchUnit · React · TypeScript · Vite · GitHub Actions · Docker · Fly.io
+Java 25 · Spring Boot 4.2 · Spring Data JPA · PostgreSQL · Flyway · Spring Cloud AWS (SQS) · JUnit 5 · Mockito · Testcontainers · LocalStack · ArchUnit · React · TypeScript · Vite · GitHub Actions · Docker · Render · Neon

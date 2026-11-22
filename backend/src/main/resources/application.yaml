@@ -11,6 +11,9 @@ spring:
   mvc:
     problemdetails:
       enabled: true
+    servlet:
+      # Inicializa o DispatcherServlet na subida, e não na primeira requisição.
+      load-on-startup: 1
   docker:
     compose:
       enabled: false
@@ -23,6 +26,13 @@ spring:
     aws:
       region:
         static: ${AWS_REGION:sa-east-1}
+      sqs:
+        listener:
+          # Espera longa: cada consulta à fila aguarda até 20 s por mensagens, o que reduz as requisições ao SQS.
+          poll-timeout: 20s
+
+server:
+  port: ${PORT:8080}
 
 hexfolio:
   queues:
@@ -58,6 +68,10 @@ management:
     health:
       probes:
         enabled: true
+  health:
+    # O e-mail é processado pela fila: uma falha no SMTP não deve derrubar o health check da API.
+    mail:
+      enabled: false
 
 ---
 spring:
@@ -79,3 +93,29 @@ spring:
 hexfolio:
   queues:
     provision: true
+
+---
+# Produção (Render). Os segredos chegam por variáveis de ambiente configuradas no painel do Render.
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    hikari:
+      maximum-pool-size: 5
+  mail:
+    host: ${SMTP_HOST:smtp-relay.brevo.com}
+    port: ${SMTP_PORT:587}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+  cloud:
+    aws:
+      region:
+        static: ${AWS_REGION:us-east-1}
+hexfolio:
+  queues:
+    visibility-timeout-seconds: 30

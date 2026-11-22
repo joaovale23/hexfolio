@@ -20,10 +20,13 @@ O build do front e o deploy no GitHub Pages rodam num workflow separado.
 
 | Peça | Onde |
 |---|---|
-| API | Fly.io, região `gru` (São Paulo), imagem Docker |
-| Banco | PostgreSQL gerenciado (ver [ADR 0005](../adr/0005-hospedagem.md)) |
-| Fila | AWS SQS `sa-east-1`, com DLQ |
+| API | Render (plano Free), região Virgínia, imagem Docker |
+| Banco | Neon (plano Free), AWS us-east-1 |
+| Fila | AWS SQS `us-east-1`, com DLQ |
+| E-mail | Brevo (SMTP) |
 | Front | GitHub Pages |
+
+Detalhes e medições na máquina gratuita: [ADR 0005](../adr/0005-hospedagem.md).
 
 ## Observabilidade
 
