@@ -115,7 +115,7 @@ spring:
   cloud:
     aws:
       region:
-        static: ${AWS_REGION:us-east-1}
+        static: ${AWS_REGION:us-east-2}
 hexfolio:
   queues:
     visibility-timeout-seconds: 30

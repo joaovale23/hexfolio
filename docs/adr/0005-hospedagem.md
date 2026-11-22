@@ -11,11 +11,13 @@ O objetivo é custo zero. Desde a proposta original, as contas novas no Fly.io p
 | Peça | Escolha | Por quê |
 |---|---|---|
 | Front | GitHub Pages | Gratuito, deploy pelo GitHub Actions |
-| API | **Render, plano Free**, região Virgínia | Gratuito, sem cartão, roda a imagem Docker do repositório (`render.yaml`) |
+| API | **Render, plano Free**, região Ohio | Gratuito, sem cartão, roda a imagem Docker do repositório (`render.yaml`) |
 | Manter a API acordada | Ping externo a cada 10 min (cron-job.org) em `GET /api/portfolio` | O plano Free dorme após 15 min sem tráfego. Uma única API ligada o mês todo (744 h) cabe nas 750 h gratuitas |
-| Banco | **Neon, plano Free**, AWS us-east-1 | O Postgres gratuito do Render expira em 30 dias. O Neon fica na mesma região da API |
-| Fila | AWS SQS, us-east-1 | [ADR 0002](0002-sqs-para-contato.md). 1 milhão de requisições/mês gratuitas |
+| Banco | **Neon, plano Free**, AWS us-east-2 | O Postgres gratuito do Render expira em 30 dias. O Neon fica na mesma região da API |
+| Fila | AWS SQS, us-east-2 | [ADR 0002](0002-sqs-para-contato.md). 1 milhão de requisições/mês gratuitas |
 | E-mail | Brevo (SMTP), plano Free | 300 e-mails/dia, sem cartão |
+
+**Região:** tudo em Ohio (us-east-2). O plano gratuito da AWS para contas novas libera uma única região, e a da conta é Ohio. O Render e o Neon também têm Ohio, então API, banco e fila ficam juntos.
 
 ## Ajustes para a máquina gratuita (512 MB, 0,1 CPU)
 

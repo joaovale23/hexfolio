@@ -20,9 +20,9 @@ O build do front e o deploy no GitHub Pages rodam num workflow separado.
 
 | Peça | Onde |
 |---|---|
-| API | Render (plano Free), região Virgínia, imagem Docker |
-| Banco | Neon (plano Free), AWS us-east-1 |
-| Fila | AWS SQS `us-east-1`, com DLQ |
+| API | Render (plano Free), região Ohio, imagem Docker |
+| Banco | Neon (plano Free), AWS us-east-2 |
+| Fila | AWS SQS `us-east-2`, com DLQ |
 | E-mail | Brevo (SMTP) |
 | Front | GitHub Pages |
 

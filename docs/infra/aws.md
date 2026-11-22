@@ -2,7 +2,7 @@
 
 Em desenvolvimento e nos testes, as filas são criadas pelo `SqsQueueProvisioner` no LocalStack. Em produção, elas são criadas uma vez na conta AWS.
 
-## 1. Filas (região `us-east-1`, a mesma da API no Render e do banco no Neon)
+## 1. Filas (região `us-east-2`, a mesma da API no Render e do banco no Neon)
 
 1. Criar a fila **`hexfolio-contact-dlq`** (Standard).
 2. Criar a fila **`hexfolio-contact`** (Standard):
@@ -22,8 +22,8 @@ Política que permite só o necessário, e só nessas duas filas:
     "Action": ["sqs:SendMessage", "sqs:ReceiveMessage", "sqs:DeleteMessage",
                "sqs:ChangeMessageVisibility", "sqs:GetQueueUrl", "sqs:GetQueueAttributes"],
     "Resource": [
-      "arn:aws:sqs:us-east-1:<conta>:hexfolio-contact",
-      "arn:aws:sqs:us-east-1:<conta>:hexfolio-contact-dlq"
+      "arn:aws:sqs:us-east-2:<conta>:hexfolio-contact",
+      "arn:aws:sqs:us-east-2:<conta>:hexfolio-contact-dlq"
     ]
   }]
 }
