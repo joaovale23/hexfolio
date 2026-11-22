@@ -108,10 +108,14 @@ spring:
       maximum-pool-size: 5
   mail:
     host: ${SMTP_HOST:smtp-relay.brevo.com}
-    port: ${SMTP_PORT:587}
+    # O plano gratuito do Render bloqueia a saída pelas portas 25, 465 e 587. A Brevo também atende na 2525.
+    port: ${SMTP_PORT:2525}
     properties:
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
+      mail.smtp.connectiontimeout: 10000
+      mail.smtp.timeout: 10000
+      mail.smtp.writetimeout: 10000
   cloud:
     aws:
       region:

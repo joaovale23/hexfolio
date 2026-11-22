@@ -26,6 +26,7 @@ Medidos num container com os mesmos limites:
 - **Memória:** cerca de 310 MB com `-XX:MaxRAMPercentage=70 -XX:+UseSerialGC -Xss512k`.
 - **Inicialização:** cerca de 2 min 30 s. Só acontece em deploys e reinícios.
 - **Primeira requisição:** caía de 12,5 s para 3 s com o aquecimento na subida (`WarmUpConfiguration`) e o `DispatcherServlet` inicializado no startup.
+- **SMTP:** o plano gratuito do Render bloqueia a saída pelas portas 25, 465 e 587, então a API usa a porta 2525 da Brevo, com tempo limite de 10 s.
 - **SQS:** espera longa de 20 s por consulta, para manter o consumo de requisições bem abaixo da cota gratuita.
 
 ## Consequências
