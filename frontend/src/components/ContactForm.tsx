@@ -15,6 +15,27 @@ type State = 'idle' | 'sending' | 'sent' | 'offline' | 'tooMany' | 'invalid'
 
 const EMPTY: ContactInput = { name: '', email: '', message: '', website: '' }
 
+/** Canais diretos: quem recruta costuma preferir um link a um formulário. */
+const CHANNELS = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/joaovitorvale' },
+  { label: 'GitHub', href: 'https://github.com/joaovale23' },
+  { label: 'joaovitorvalec@gmail.com', href: 'mailto:joaovitorvalec@gmail.com' },
+]
+
+function DirectLinks() {
+  return (
+    <ul className="contact-links">
+      {CHANNELS.map(c => (
+        <li key={c.label}>
+          <a className="contact-link" href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+            {c.label}{c.href.startsWith('http') && ' ↗'}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export function ContactForm({ t, devMode, onTraceEvent, onTraceStart, events }: Props) {
   const [input, setInput] = useState<ContactInput>(EMPTY)
   const [state, setState] = useState<State>('idle')
@@ -49,7 +70,7 @@ export function ContactForm({ t, devMode, onTraceEvent, onTraceStart, events }: 
     return (
       <div className="contact">
         <p>{t.contactSoon}</p>
-        <p><a className="contact-link" href="https://www.linkedin.com/in/joaovitorvale" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
+        <DirectLinks />
       </div>
     )
   }
@@ -72,6 +93,7 @@ export function ContactForm({ t, devMode, onTraceEvent, onTraceStart, events }: 
         <p className="warn">{t.offline} <a href="https://www.linkedin.com/in/joaovitorvale" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
       )}
       {!devMode && <p className="hint">{t.watchLive}</p>}
+      {!devMode && <div className="direct"><p className="hint">{t.directContact}</p><DirectLinks /></div>}
       {events.length > 0 && (
         <ol className="trace" aria-live="polite">
           {events.map((e, i) => (

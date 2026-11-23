@@ -314,6 +314,10 @@ button { font: inherit; cursor: pointer; }
 .chips.small li.has-icon { display: inline-flex; align-items: center; gap: 5px; padding-left: 6px; }
 .chips.small .skill-icon { width: 13px; height: 13px; }
 .contact-link { font: 600 15px var(--mono); color: var(--s-projects); }
+.contact-links { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.contact-links .contact-link { text-decoration: none; overflow-wrap: anywhere; }
+.contact-links .contact-link:hover { text-decoration: underline; }
+.contact .direct { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--rule); max-width: 560px; }
 
 /* ── indicador de rolagem: setinha translúcida que "quer descer" ── */
 .scroll-hint {

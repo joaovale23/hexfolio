@@ -34,6 +34,15 @@ describe('App', () => {
     expect(within(panel).getAllByText('código privado da empresa').length).toBeGreaterThan(0)
   })
 
+  it('o contato oferece canais diretos além do formulário', async () => {
+    render(<App />)
+    await userEvent.click(await screen.findByRole('button', { name: 'Contato' }))
+    const panel = screen.getByRole('region', { name: 'Contato' })
+    expect(within(panel).getByRole('link', { name: /LinkedIn/ })).toHaveAttribute('href', 'https://www.linkedin.com/in/joaovitorvale')
+    expect(within(panel).getByRole('link', { name: /GitHub/ })).toHaveAttribute('href', 'https://github.com/joaovale23')
+    expect(within(panel).getByRole('link', { name: 'joaovitorvalec@gmail.com' })).toHaveAttribute('href', 'mailto:joaovitorvalec@gmail.com')
+  })
+
   it('no modo dev, desenha as peças reais da arquitetura', async () => {
     render(<App />)
     await userEvent.click(await screen.findByRole('switch'))

@@ -55,7 +55,7 @@
         "PostgreSQL",
         "React"
       ],
-      "status": "in progress",
+      "status": "live",
       "repoUrl": "https://github.com/joaovale23/hexfolio",
       "demoUrl": null,
       "privateCode": false
@@ -115,7 +115,7 @@
         "FastAPI",
         "Vue.js"
       ],
-      "status": "done",
+      "status": "completed",
       "repoUrl": "https://github.com/joaovale23/etl-ans",
       "demoUrl": "https://etl-ans.vercel.app/",
       "privateCode": false
