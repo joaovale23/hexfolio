@@ -24,7 +24,8 @@
   color-scheme: light;
 }
 
-* { box-sizing: border-box; }
+/* Sem o retângulo azul que o navegador do celular pinta em tudo que é tocado. */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; }
 body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-underline-offset: 3px; }
