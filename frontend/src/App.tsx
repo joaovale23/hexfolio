@@ -7,10 +7,12 @@ import { DevHex } from './components/DevHex'
 import { MiniHex, NormalHex } from './components/NormalHex'
 import { ScrollHint } from './components/ScrollHint'
 import { SectionContent } from './components/Sections'
+import { WakeBanner } from './components/WakeBanner'
 import { componentsLitBy, isFailure } from './hex/trace'
 import { SECTIONS, STRINGS, type SectionId } from './i18n'
 import type { ArchitectureMap, Lang, Loaded, Portfolio, TraceEvent } from './types'
 import { useMediaQuery } from './useMediaQuery'
+import { useServerStatus } from './useServerStatus'
 
 /** Tempo mínimo de cada etapa acesa: o SQS é mais rápido que o olho. */
 const STEP_MS = 750
@@ -32,9 +34,11 @@ export default function App() {
   const playing = useRef(false)
   const isMobile = useMediaQuery('(max-width: 767px)')
   const t = STRINGS[lang]
+  const server = useServerStatus()
 
-  useEffect(() => { document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en'; loadPortfolio(lang, setPortfolio) }, [lang])
-  useEffect(() => { loadArchitecture(setArchitecture) }, [])
+  // Recarrega quando a API acorda: o que veio da cópia estática passa a vir dela, ao vivo.
+  useEffect(() => { document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en'; loadPortfolio(lang, setPortfolio) }, [lang, server.woke])
+  useEffect(() => { loadArchitecture(setArchitecture) }, [server.woke])
 
   // As etapas chegam pelo SSE quase juntas; tocamos uma de cada vez para dar para acompanhar.
   const playNext = useCallback(() => {
@@ -84,6 +88,7 @@ export default function App() {
 
   return (
     <div className={`app${devMode ? ' is-dev' : ''}`}>
+      <WakeBanner state={server.state} elapsed={server.elapsed} t={t} />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="hexfolio">
           <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7" /></svg>
