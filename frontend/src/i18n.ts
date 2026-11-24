@@ -32,8 +32,8 @@ const pt = {
     titleOff: 'Estamos fora do horário comercial: o servidor está acordando',
     titleOn: 'O servidor está ligando',
     bodyOff: (from: number, to: number) =>
-      `Das ${from}h às ${to}h a API fica sempre pronta. Fora desse horário ela dorme, por ser gratuita, e leva cerca de 1 minuto para ligar.`,
-    bodyOn: 'Leva menos de 1 minuto.',
+      `Das ${from}h às ${to}h a API fica sempre pronta. Fora desse horário ela dorme, por ser gratuita, e leva de 1 minuto a 1 minuto e meio para ligar.`,
+    bodyOn: 'Leva de 1 minuto a 1 minuto e meio.',
     meanwhile: 'Aguarde um instante: a página já está completa, e o modo dev e o formulário de contato funcionam assim que ela acordar.',
     slow: 'Está demorando mais que o normal, mas ainda estamos tentando.',
     ready: 'Servidor pronto! Agora tudo é ao vivo.',
@@ -87,8 +87,8 @@ const en: typeof pt = {
     titleOff: "We're outside business hours: the server is waking up",
     titleOn: 'The server is starting',
     bodyOff: (from: number, to: number) =>
-      `From ${from} a.m. to ${to - 12} p.m. (Brasília time) the API is always ready. Outside those hours it sleeps, since it runs on a free plan, and takes about 1 minute to start.`,
-    bodyOn: 'It takes less than a minute.',
+      `From ${from} a.m. to ${to - 12} p.m. (Brasília time) the API is always ready. Outside those hours it sleeps, since it runs on a free plan, and takes 1 to 1.5 minutes to start.`,
+    bodyOn: 'It takes 1 to 1.5 minutes.',
     meanwhile: 'Hang on a moment: the page is already complete, and dev mode and the contact form work as soon as it wakes up.',
     slow: 'This is taking longer than usual, but we are still trying.',
     ready: 'Server ready! Everything is live now.',

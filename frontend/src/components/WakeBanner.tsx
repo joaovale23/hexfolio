@@ -1,8 +1,8 @@
 import type { Strings } from '../i18n'
 import { AWAKE_HOURS, isOffHours, type ServerState } from '../useServerStatus'
 
-/** Quanto a API gratuita do Render costuma levar para ligar depois de dormir. */
-const EXPECTED_WAKE_SECONDS = 60
+/** Quanto a API gratuita do Render costuma levar para ligar depois de dormir (de 1 min a 1 min e meio). */
+const EXPECTED_WAKE_SECONDS = 90
 
 interface Props { state: ServerState; elapsed: number; t: Strings }
 
