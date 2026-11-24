@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import {
-  siApachemaven, siClaude, siDocker, siFastapi, siFirebase, siFlutter, siFlyway, siGithubactions, siGooglecloud, 
+  siAngular, siApachemaven, siClaude, siDocker, siFastapi, siFirebase, siFlutter, siFlyway, siGithubactions, siGooglecloud, 
   siHibernate, siJunit5, siLinux, siNextdotjs, siPostgresql, siPython, siReact, siRedis, siSpringboot, siSpringsecurity, siTypescript, siVuedotjs,
 } from 'simple-icons'
 
@@ -13,6 +13,8 @@ const BRANDS: Record<string, Brand> = {
   typescript: siTypescript, 'next.js': siNextdotjs, flutter: siFlutter, docker: siDocker, 'github actions': siGithubactions,
   'google cloud': siGooglecloud, firebase: siFirebase, linux: siLinux, 'claude code': siClaude,
   python: siPython, fastapi: siFastapi, 'vue.js': siVuedotjs,
+  // O logo atual do Angular é quase preto; o vermelho clássico se destaca nos dois modos.
+  angular: { ...siAngular, hex: 'DD0031' },
 }
 
 interface Glyph { color: string; draw: ReactNode }

@@ -61,6 +61,28 @@
       "privateCode": false
     },
     {
+      "slug": "fintrack",
+      "name": "fintrack",
+      "description": "Controle financeiro pessoal: lançamento em linguagem natural, metas por categoria e o caminho do dinheiro num diagrama de fluxo.",
+      "highlights": [
+        "Front em Angular 22: signals, httpResource, deferrable views, animações nativas e gráficos em SVG feitos à mão.",
+        "API em Java 21 + Spring Boot 4 com JWT (resource server), Flyway, Problem Details (RFC 9457) e importação de extrato CSV/OFX.",
+        "Contas recorrentes lançadas por um job idempotente, cofrinhos com metas e entrada como visitante, sem cadastro.",
+        "34 testes no backend (JUnit 5, Mockito, Testcontainers) e 49 no front (Vitest)."
+      ],
+      "tags": [
+        "Angular",
+        "TypeScript",
+        "Java 21",
+        "Spring Boot 4",
+        "PostgreSQL"
+      ],
+      "status": "no ar",
+      "repoUrl": "https://github.com/joaovale23/fintrack",
+      "demoUrl": "https://joaovale23.github.io/fintrack/",
+      "privateCode": false
+    },
+    {
       "slug": "servija",
       "name": "ServiJá",
       "description": "Marketplace de serviços com backend, painel administrativo e app.",
@@ -172,6 +194,7 @@
     {
       "title": "Front-end e mobile",
       "skills": [
+        "Angular",
         "React",
         "TypeScript",
         "Next.js",
