@@ -169,7 +169,8 @@
         "Flyway",
         "Maven",
         "PostgreSQL",
-        "Redis"
+        "Redis",
+        "Python"
       ]
     },
     {
