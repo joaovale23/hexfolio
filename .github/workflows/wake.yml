@@ -1,0 +1,27 @@
+# Acorda a API gratuita do Render antes do horário comercial e de tempos em tempos durante o dia.
+# O cron-job.org só mantém a API acordada: o Render responde aos pings dele com uma página de espera
+# e nem sempre liga o serviço. Um curl comum liga, então quem acorda é este job.
+name: wake
+
+on:
+  schedule:
+    # 7h50, 9h50, 11h50, 13h50, 15h50 e 17h50 em Brasília (UTC−3).
+    - cron: '50 10,12,14,16,18,20 * * *'
+  workflow_dispatch:
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Acordar a API e esperar ela responder
+        run: |
+          url="https://hexfolio-api.onrender.com/actuator/health/liveness"
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 60 -H 'Accept: application/json' "$url" || true)
+            echo "tentativa $i: HTTP $code"
+            if [ "$code" = "200" ]; then exit 0; fi
+            sleep 15
+          done
+          echo "A API não respondeu em 8 minutos" >&2
+          exit 1
